@@ -1,0 +1,111 @@
+{
+  "home": {
+    "walk": [
+      "merged-frame-0.png",
+      "merged-frame-1.png",
+      "merged-frame-2.png",
+      "merged-frame-3.png",
+      "merged-frame-4.png",
+      "merged-frame-5.png",
+      "merged-frame-6.png"
+    ],
+    "sit": [
+      "sitting-frame-0.png",
+      "sitting-frame-1.png",
+      "sitting-frame-2.png",
+      "sitting-frame-3.png",
+      "sitting-frame-4.png",
+      "sitting-frame-5.png"
+    ],
+    "sitWag": [
+      "sitting-wag-0.png",
+      "sitting-wag-1.png",
+      "sitting-wag-2.png",
+      "sitting-wag-3.png",
+      "sitting-wag-4.png"
+    ],
+    "sleep": [
+      "odeng-sleeping_0001.png",
+      "odeng-sleeping_0002.png",
+      "odeng-sleeping_0003.png",
+      "odeng-sleeping_0004.png"
+    ],
+    "bark": [
+      "barking_0001.png",
+      "barking_0002.png",
+      "barking_0003.png",
+      "barking_0004.png",
+      "barking_0005.png"
+    ],
+    "jump": [
+      "jump_0001.png",
+      "jump_0002.png",
+      "jump_0003.png",
+      "jump_0004.png"
+    ],
+    "poop": [
+      "pooping_0001.png",
+      "pooping_0002.png",
+      "pooping_0003.png",
+      "pooping_0004.png",
+      "pooping_0005.png"
+    ],
+    "petting": [
+      "sidesitting-petting-sequence_0001.png",
+      "sidesitting-petting-sequence_0002.png",
+      "sidesitting-petting-sequence_0003.png",
+      "sidesitting-petting-sequence_0004.png",
+      "sidesitting-petting-sequence_0005.png"
+    ],
+    "sad": [
+      "sitting-sad-sequence_0001.png",
+      "sitting-sad-sequence_0002.png",
+      "sitting-sad-sequence_0003.png",
+      "sitting-sad-sequence_0004.png",
+      "sitting-sad-sequence_0005.png"
+    ]
+  },
+  "care": {
+    "seated": [
+      "sitting forward_0001.png",
+      "sitting forward_0002.png",
+      "sitting forward_0003.png",
+      "sitting forward_0004.png"
+    ],
+    "eat": [
+      "chewing_sequence_0001.png",
+      "chewing_sequence_0002.png",
+      "chewing_sequence_0003.png",
+      "chewing_sequence_0004.png"
+    ],
+    "eatHappy": [
+      "chewing_happy_sequence_0001.png",
+      "chewing_happy_sequence_0002.png",
+      "chewing_happy_sequence_0003.png",
+      "chewing_happy_sequence_0004.png"
+    ],
+    "wash": [
+      "shower_sequence_0001.png",
+      "shower_sequence_0002.png",
+      "shower_sequence_0003.png",
+      "shower_sequence_0004.png"
+    ],
+    "washHappy": [
+      "shower_happy_0001.png",
+      "shower_happy_0002.png",
+      "shower_happy_0003.png",
+      "shower_happy_0004.png",
+      "shower_happy_0005.png"
+    ]
+  },
+  "egg": {
+    "reset": [
+      "odeng-egg_0001.png",
+      "odeng-egg_0002.png",
+      "odeng-egg_0003.png",
+      "odeng-egg_0004.png",
+      "odeng-egg_0005.png"
+    ]
+  }
+}
+

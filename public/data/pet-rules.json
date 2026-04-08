@@ -1,0 +1,55 @@
+{
+  "version": 1,
+  "needBounds": {
+    "min": 0,
+    "max": 100
+  },
+  "decayPerHour": {
+    "hunger": -2.8,
+    "sleep": -2.2,
+    "love": -0.9,
+    "poop": 2.4
+  },
+  "actions": {
+    "pet": {
+      "love": 14,
+      "hunger": -1
+    },
+    "nap": {
+      "sleep": 26,
+      "love": 2
+    },
+    "feed": {
+      "hunger": 34,
+      "love": 5,
+      "poop": 8
+    },
+    "wash": {
+      "poop": -38,
+      "love": 4
+    }
+  },
+  "thresholds": {
+    "needy": {
+      "hunger": 50,
+      "sleep": 45,
+      "love": 45,
+      "poop": 55
+    },
+    "critical": {
+      "hunger": 18,
+      "sleep": 18,
+      "love": 20,
+      "poop": 82
+    }
+  },
+  "rescue": {
+    "criticalWindowHours": 12
+  },
+  "timing": {
+    "homePaceSeconds": 7,
+    "saveDebounceMs": 250,
+    "uiTickMs": 1000
+  }
+}
+

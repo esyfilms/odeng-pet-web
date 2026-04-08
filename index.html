@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <title>Odeng Pet</title>
+    <link rel="manifest" href="./public/manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="device-shell">
+        <div class="device-top">
+          <div class="speaker-dots" aria-hidden="true">
+            <span></span><span></span><span></span><span></span><span></span>
+          </div>
+          <div class="brand-lockup">
+            <p class="eyebrow">Odeng Nano Pet</p>
+            <h1 id="scene-title">Home Room</h1>
+          </div>
+          <div class="shell-controls">
+            <button id="bg-button" class="shell-mini-button shell-mini-icon" type="button" aria-label="Change background"></button>
+            <div class="shell-led" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <section id="room-card" class="room-card">
+          <div class="screen-bezel">
+            <div class="screen-grid"></div>
+            <div class="cloud-band"></div>
+            <div id="care-badge" class="care-badge hidden"></div>
+            <div id="mood-badge" class="mood-badge">CALM</div>
+            <div id="feed-rain" class="feed-rain hidden" aria-hidden="true"></div>
+            <div id="wash-water" class="wash-water hidden" aria-hidden="true"></div>
+            <div id="clean-sweep" class="clean-sweep hidden" aria-hidden="true"></div>
+
+            <div id="pet-stage" class="pet-stage" data-layout="side">
+              <div id="sprite-container" class="sprite-container">
+                <img id="pet-sprite" class="pet-sprite" src="" alt="Odeng sprite" />
+              </div>
+              <div id="sleep-zzz" class="sleep-zzz hidden" aria-hidden="true">Z z z</div>
+            </div>
+
+            <div id="poop-piles" class="poop-piles" aria-hidden="true"></div>
+
+            <div class="screen-stats">
+              <div class="mini-need-row">
+                <span class="mini-label">FOOD</span>
+                <div class="mini-meter"><div id="meter-hunger" class="mini-fill"></div></div>
+              </div>
+              <div class="mini-need-row">
+                <span class="mini-label">SLEEP</span>
+                <div class="mini-meter"><div id="meter-sleep" class="mini-fill"></div></div>
+              </div>
+              <div class="mini-need-row">
+                <span class="mini-label">LOVE</span>
+                <div class="mini-meter"><div id="meter-love" class="mini-fill"></div></div>
+              </div>
+              <div class="mini-need-row">
+                <span class="mini-label">VIT</span>
+                <div class="mini-meter"><div id="meter-health" class="mini-fill"></div></div>
+              </div>
+            </div>
+
+            <div id="ground-band" class="ground-band meadow"></div>
+          </div>
+        </section>
+
+        <section class="action-panel">
+          <div id="home-actions" class="action-grid">
+            <button id="pet-button" type="button">Pet</button>
+            <button id="nap-button" type="button">Nap</button>
+            <button id="feed-button" type="button">Feed</button>
+            <button id="wash-button" type="button">Wash</button>
+          </div>
+
+          <div id="feed-actions" class="action-grid hidden">
+            <button id="serve-button" type="button">Drop Treats</button>
+            <button id="back-from-feed" type="button">Back</button>
+          </div>
+
+          <div id="wash-actions" class="action-grid hidden">
+            <button id="wash-start-button" type="button">Start Wash</button>
+            <button id="back-from-wash" type="button">Back</button>
+          </div>
+
+          <div id="egg-actions" class="action-grid hidden">
+            <div class="egg-note">Tap the egg 100 times to hatch Odeng again.</div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

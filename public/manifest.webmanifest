@@ -1,0 +1,10 @@
+{
+  "name": "Odeng Pet",
+  "short_name": "Odeng",
+  "display": "standalone",
+  "background_color": "#efe3c6",
+  "theme_color": "#151b26",
+  "start_url": "./index.html",
+  "icons": []
+}
+
