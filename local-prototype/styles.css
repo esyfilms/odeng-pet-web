@@ -440,6 +440,12 @@ button {
   z-index: 2;
 }
 
+.pet-sprite.baby-stage {
+  width: 126px;
+  height: 126px;
+  bottom: calc(-37px + var(--pet-lift, 0px));
+}
+
 .pet-sprite.face-left {
   transform: translateX(-50%) scaleX(-1);
 }
@@ -448,6 +454,12 @@ button {
   width: 122px;
   height: 122px;
   bottom: calc(-29px + var(--pet-lift, 0px));
+}
+
+.pet-sprite.baby-stage.front {
+  width: 108px;
+  height: 108px;
+  bottom: calc(-24px + var(--pet-lift, 0px));
 }
 
 .pet-sprite.front.adult-front {
@@ -462,8 +474,18 @@ button {
   bottom: calc(-36px + var(--pet-lift, 0px));
 }
 
+.pet-sprite.baby-stage.sleep {
+  width: 126px;
+  height: 126px;
+  bottom: calc(-32px + var(--pet-lift, 0px));
+}
+
 .screen[data-scene="play"] .pet-sprite {
   bottom: calc(-60px + var(--pet-lift, 0px));
+}
+
+.screen[data-scene="play"] .pet-sprite.baby-stage {
+  bottom: calc(-54px + var(--pet-lift, 0px));
 }
 
 .pet-sprite.egg {
