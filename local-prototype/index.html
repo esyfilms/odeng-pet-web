@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Odeng Digi Pet Local Prototype</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Doto:wght@400..700&family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="device">
+        <header class="device-top">
+          <span class="brand">Odeng Digi Pet</span>
+        </header>
+
+        <section class="screen" id="screen-shell">
+          <div class="clouds"></div>
+          <div class="screen-topbar">
+            <span id="screen-title">Egg</span>
+            <span id="screen-mood">Waiting</span>
+          </div>
+
+          <div class="menu-grid top-row" id="top-menu"></div>
+
+          <button id="stage-hitbox" class="stage" type="button" aria-label="Interact with Odeng">
+            <div class="bars" id="mini-bars"></div>
+            <div class="status-chip" id="status-chip">Egg</div>
+            <div class="message" id="message"></div>
+            <div class="effects" id="effects"></div>
+            <div id="game-layer" class="game-layer hidden" aria-hidden="true"></div>
+            <img id="pet-sprite" class="pet-sprite" alt="Odeng" />
+            <div class="ground"></div>
+          </button>
+
+          <div class="action-deck" id="action-deck"></div>
+
+          <div class="menu-grid bottom-row" id="bottom-menu"></div>
+        </section>
+
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

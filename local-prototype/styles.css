@@ -1,0 +1,892 @@
+:root {
+  --black: #f5f5f5;
+  --surface: #ffffff;
+  --surface-raised: #f0f0f0;
+  --border: #e2e2e2;
+  --border-visible: #bdbdbd;
+  --text-disabled: #999999;
+  --text-secondary: #666666;
+  --text-primary: #1a1a1a;
+  --text-display: #000000;
+  --accent: #d71921;
+  --success: #4a9e5c;
+  --warning: #d4a843;
+  --dot: rgba(0, 0, 0, 0.13);
+  --segment-gap: var(--black);
+  --pet-lift: 0px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  background: var(--black);
+  color: var(--text-primary);
+  font-family: "Space Grotesk", "DM Sans", system-ui, sans-serif;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+}
+
+button {
+  font: inherit;
+}
+
+.app-shell {
+  width: min(100vw, 430px);
+  height: min(100svh, 900px);
+  min-height: 680px;
+  padding: 18px;
+}
+
+.device {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--border-visible);
+  border-radius: 16px;
+  background: var(--black);
+  overflow: hidden;
+}
+
+.device::before {
+  content: "";
+  position: absolute;
+  inset: 12px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  pointer-events: none;
+  animation: device-breathe 4.8s ease-in-out infinite;
+}
+
+.device-top {
+  position: absolute;
+  left: 18px;
+  top: 16px;
+  z-index: 8;
+}
+
+.brand {
+  font-family: "Space Mono", "JetBrains Mono", monospace;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle, var(--dot) 1px, transparent 1px) 0 0 / 18px 18px,
+    var(--black);
+}
+
+.screen::after {
+  display: none;
+}
+
+.clouds {
+  display: none;
+}
+
+.screen-topbar {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 44px;
+  z-index: 8;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  pointer-events: none;
+}
+
+#screen-title {
+  max-width: 210px;
+  font-family: "Doto", "Space Mono", monospace;
+  font-size: clamp(34px, 10vw, 48px);
+  line-height: 0.92;
+  color: var(--text-display);
+  text-transform: uppercase;
+  overflow-wrap: anywhere;
+}
+
+#screen-mood,
+.status-chip {
+  font-family: "Space Mono", "JetBrains Mono", monospace;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+#screen-mood::before,
+.status-chip::before {
+  content: "[";
+}
+
+#screen-mood::after,
+.status-chip::after {
+  content: "]";
+}
+
+.menu-grid {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  z-index: 9;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.top-row {
+  top: auto;
+  bottom: 154px;
+}
+
+.bottom-row {
+  bottom: 92px;
+}
+
+.menu-icon {
+  position: relative;
+  min-width: 0;
+  height: 54px;
+  padding: 6px 4px 5px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-disabled);
+  display: grid;
+  place-items: center;
+  gap: 3px;
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.menu-icon.active {
+  border-color: var(--text-display);
+  color: var(--text-display);
+  background: var(--surface);
+}
+
+.menu-icon.active::before {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  margin-top: -43px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: signal-dot 1.65s steps(2, end) infinite;
+}
+
+.menu-icon:active {
+  transform: translateY(1px);
+}
+
+.menu-svg {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.menu-label {
+  font-family: "Space Mono", "JetBrains Mono", monospace;
+  font-size: 8px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.stage {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  top: 128px;
+  bottom: 222px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+  cursor: default;
+  overflow: hidden;
+  text-align: left;
+}
+
+.status-chip {
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 5;
+  display: none;
+}
+
+.bars {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 24px;
+  z-index: 6;
+}
+
+.stats-bars {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.stats-panel,
+.age-panel {
+  background: transparent;
+  border: 0;
+}
+
+.stats-panel {
+  display: grid;
+  gap: 14px;
+}
+
+.stats-kicker,
+.age-heading {
+  font-family: "Space Mono", "JetBrains Mono", monospace;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.age-panel {
+  display: grid;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+}
+
+.age-primary {
+  font-family: "Doto", "Space Mono", monospace;
+  font-size: 46px;
+  line-height: 0.95;
+  color: var(--text-display);
+  text-transform: uppercase;
+}
+
+.age-secondary,
+.age-stage {
+  font-family: "Space Mono", "JetBrains Mono", monospace;
+  font-size: 11px;
+  line-height: 1.2;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.mini-bar {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 34px;
+  align-items: center;
+  gap: 10px;
+  font-family: "Space Mono", "JetBrains Mono", monospace;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+}
+
+.mini-label {
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.mini-value {
+  color: var(--text-display);
+  text-align: right;
+}
+
+.mini-track {
+  height: 9px;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 11px, var(--segment-gap) 11px 13px),
+    var(--border);
+  overflow: hidden;
+}
+
+.mini-fill {
+  height: 100%;
+  background:
+    repeating-linear-gradient(90deg, transparent 0 11px, var(--segment-gap) 11px 13px),
+    var(--text-display);
+}
+
+.message {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 44px;
+  z-index: 6;
+  min-height: 15px;
+  text-align: center;
+  font-family: "Space Mono", "JetBrains Mono", monospace;
+  font-size: 11px;
+  line-height: 1.35;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  white-space: pre-line;
+}
+
+.message.stats-note {
+  display: none;
+}
+
+.message.play-note {
+  top: 34px;
+}
+
+.effects {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.game-layer {
+  position: absolute;
+  inset: 18px 0 38px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.game-hud {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: inline-flex;
+  gap: 14px;
+  font-family: "Space Mono", "JetBrains Mono", monospace;
+  font-size: 10px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+
+.game-entity {
+  position: absolute;
+  bottom: 8px;
+  width: 40px;
+  height: 40px;
+  transform: translateX(-50%);
+  object-fit: contain;
+  object-position: center bottom;
+  image-rendering: pixelated;
+}
+
+.game-bark-wave {
+  position: absolute;
+  bottom: 7px;
+  width: 14px;
+  height: 3px;
+  background: var(--text-display);
+  box-shadow:
+    -6px -4px 0 0 rgba(0, 0, 0, 0.78),
+    -10px 4px 0 0 rgba(0, 0, 0, 0.58),
+    -18px 0 0 0 rgba(0, 0, 0, 0.42),
+    -24px -6px 0 0 rgba(0, 0, 0, 0.28),
+    -30px 6px 0 0 rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  transform-origin: right center;
+  transform: translateX(0) scaleX(0.28);
+}
+
+.game-bark-wave.active {
+  animation: bark-wave 280ms steps(4, end) forwards;
+}
+
+.pet-sprite {
+  position: absolute;
+  left: var(--pet-left, 50%);
+  bottom: calc(-42px + var(--pet-lift, 0px));
+  width: 142px;
+  height: 142px;
+  transform: translateX(-50%);
+  object-fit: contain;
+  object-position: center bottom;
+  image-rendering: pixelated;
+  z-index: 2;
+}
+
+.pet-sprite.face-left {
+  transform: translateX(-50%) scaleX(-1);
+}
+
+.pet-sprite.front {
+  width: 122px;
+  height: 122px;
+  bottom: calc(-29px + var(--pet-lift, 0px));
+}
+
+.pet-sprite.front.adult-front {
+  width: 150px;
+  height: 150px;
+  bottom: calc(-38px + var(--pet-lift, 0px));
+}
+
+.pet-sprite.sleep {
+  width: 142px;
+  height: 142px;
+  bottom: calc(-36px + var(--pet-lift, 0px));
+}
+
+.screen[data-scene="play"] .pet-sprite {
+  bottom: calc(-60px + var(--pet-lift, 0px));
+}
+
+.pet-sprite.egg {
+  width: 104px;
+  height: 104px;
+  bottom: 10px;
+}
+
+.ground {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  z-index: 1;
+  height: 1px;
+  background: var(--border-visible);
+}
+
+.ground::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 8px;
+  border-top: 1px dotted var(--border-visible);
+  opacity: 0.7;
+}
+
+.effect-poops,
+.effect-rain,
+.effect-sweep,
+.effect-water,
+.effect-zzz,
+.effect-drink,
+.effect-sparkles {
+  position: absolute;
+  pointer-events: none;
+}
+
+.effect-poops {
+  left: 12px;
+  right: 12px;
+  bottom: 34px;
+  height: 18px;
+  z-index: 1;
+}
+
+.poop {
+  position: absolute;
+  bottom: 0;
+  width: 15px;
+  height: 11px;
+  border: 1px solid var(--text-secondary);
+  border-radius: 50% 50% 45% 45%;
+  background: var(--black);
+}
+
+.poop::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  top: -5px;
+  height: 7px;
+  border: 1px solid var(--text-secondary);
+  border-bottom: 0;
+  border-radius: 50% 50% 0 0;
+  background: var(--black);
+}
+
+.effect-sweep {
+  left: 18px;
+  right: 18px;
+  bottom: 34px;
+  height: 8px;
+  background: repeating-linear-gradient(90deg, transparent 0 10px, var(--text-display) 10px 12px);
+  animation: sweep 820ms steps(8, end) forwards;
+}
+
+.effect-water {
+  left: 50%;
+  top: 0;
+  bottom: 12px;
+  width: min(156px, 58%);
+  transform: translateX(-50%);
+  z-index: 3;
+}
+
+.water-line {
+  position: absolute;
+  left: var(--x, 50%);
+  top: 0;
+  width: 1px;
+  height: 240px;
+  background: var(--text-display);
+  opacity: 0;
+  animation: water-line-fall 760ms steps(5, end) infinite;
+  animation-delay: var(--delay, 0ms);
+}
+
+.effect-rain {
+  left: 10px;
+  right: 10px;
+  top: 8px;
+  bottom: 34px;
+  z-index: 1;
+}
+
+.effect-rain img {
+  position: absolute;
+  top: -12px;
+  width: 26px;
+  height: 26px;
+  image-rendering: pixelated;
+  object-fit: contain;
+  z-index: 1;
+  filter: grayscale(1) contrast(1.15);
+  animation: treat-fall var(--fall-duration, 1.8s) linear forwards;
+}
+
+.effect-zzz {
+  bottom: 58px;
+  font-family: "Space Mono", "JetBrains Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  transform: translateX(-50%);
+}
+
+.effect-drink {
+  right: 34px;
+  bottom: 34px;
+  width: 34px;
+  height: 42px;
+  border: 1px solid var(--text-display);
+  border-radius: 2px 2px 8px 8px;
+  opacity: 0.9;
+}
+
+.effect-drink::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  right: 7px;
+  bottom: 6px;
+  height: 18px;
+  border-top: 1px solid var(--text-display);
+  background: repeating-linear-gradient(90deg, transparent 0 5px, rgba(0, 0, 0, 0.18) 5px 6px);
+}
+
+.effect-drink::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: -28px;
+  width: 1px;
+  height: 24px;
+  transform: translateX(-50%);
+  background: var(--text-display);
+  animation: drink-line-drop 1.05s steps(6, end) infinite;
+}
+
+.effect-drink span {
+  position: absolute;
+  right: -10px;
+  top: 12px;
+  width: 10px;
+  height: 16px;
+  border: 1px solid var(--text-display);
+  border-left: 0;
+  border-radius: 0 8px 8px 0;
+}
+
+.effect-pill-drop {
+  position: absolute;
+  left: 50%;
+  top: 14px;
+  width: 28px;
+  height: 28px;
+  transform: translateX(-50%);
+  object-fit: contain;
+  image-rendering: pixelated;
+  filter: grayscale(1) contrast(1.2);
+  animation: pill-drop 1180ms ease-in forwards;
+  z-index: 4;
+}
+
+.effect-sparkles {
+  left: 50%;
+  top: 30px;
+  width: 80px;
+  height: 24px;
+  transform: translateX(-50%);
+}
+
+.effect-sparkles::before,
+.effect-sparkles::after {
+  content: "";
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border: 1px solid var(--text-display);
+}
+
+.effect-sparkles::before {
+  left: 8px;
+  top: 0;
+}
+
+.effect-sparkles::after {
+  right: 8px;
+  top: 8px;
+}
+
+.action-deck {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 22px;
+  z-index: 10;
+  min-height: 44px;
+  display: grid;
+  gap: 8px;
+  padding: 0;
+  pointer-events: auto;
+}
+
+.action-deck.hidden {
+  display: none !important;
+}
+
+.deck-grid {
+  display: grid;
+  gap: 8px;
+}
+
+.deck-one {
+  grid-template-columns: minmax(140px, 0.5fr);
+  justify-content: center;
+}
+
+.deck-two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.deck-four {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.deck-three {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.deck-action,
+.deck-info {
+  min-height: 44px;
+  border: 1px solid var(--border-visible);
+  border-radius: 999px;
+  background: var(--black);
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 14px;
+  font-family: "Space Mono", "JetBrains Mono", monospace;
+  font-size: 11px;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  pointer-events: auto;
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.deck-svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.45;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.deck-info {
+  color: var(--text-secondary);
+  border-color: var(--border);
+  cursor: default;
+}
+
+.deck-action.active,
+.deck-action:active {
+  background: var(--text-display);
+  color: var(--black);
+  border-color: var(--text-display);
+  transform: translateY(1px);
+}
+
+.screen[data-scene="tricks"] .message {
+  top: 30px;
+  font-size: 13px;
+  color: var(--text-display);
+}
+
+.screen[data-scene="stats"] .stage {
+  top: 120px;
+}
+
+.screen[data-scene="stats"] .status-chip {
+  display: none;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@keyframes treat-fall {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(var(--fall-distance, 220px)) rotate(12deg) scale(1.04);
+    opacity: 1;
+  }
+}
+
+@keyframes bark-wave {
+  0% { opacity: 0.98; transform: translateX(0) scaleX(0.28); }
+  100% { opacity: 0; transform: translateX(42px) scaleX(1.65); }
+}
+
+@keyframes pill-drop {
+  0% { transform: translateX(-50%) translateY(-10px); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: translateX(-50%) translateY(var(--pill-distance, 128px)); opacity: 1; }
+}
+
+@keyframes water-line-fall {
+  0% { transform: translateY(-18px); opacity: 0; }
+  18% { opacity: 0.42; }
+  100% { transform: translateY(220px); opacity: 0; }
+}
+
+@keyframes drink-line-drop {
+  0% { transform: translateX(-50%) translateY(-10px); opacity: 0; }
+  25% { opacity: 1; }
+  100% { transform: translateX(-50%) translateY(28px); opacity: 0; }
+}
+
+@keyframes signal-dot {
+  0%, 55% { opacity: 1; }
+  56%, 100% { opacity: 0.25; }
+}
+
+@keyframes device-breathe {
+  0%, 100% { opacity: 0.75; }
+  50% { opacity: 1; }
+}
+
+@keyframes sweep {
+  0% { clip-path: inset(0 100% 0 0); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+@media (max-width: 420px) {
+  .app-shell {
+    width: 100vw;
+    height: 100svh;
+    min-height: 620px;
+    padding: 0;
+  }
+
+  .device {
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .device::before {
+    inset: 10px;
+  }
+
+  .screen-topbar,
+  .menu-grid,
+  .stage,
+  .action-deck {
+    left: 14px;
+    right: 14px;
+  }
+
+  #screen-title {
+    font-size: 36px;
+  }
+
+  .top-row {
+    bottom: 154px;
+  }
+
+  .stage {
+    top: 122px;
+    bottom: 220px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .device::before,
+  .menu-icon.active::before,
+  .water-line,
+  .effect-rain img,
+  .effect-pill-drop,
+  .effect-drink::after,
+  .game-bark-wave.active,
+  .effect-sweep {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
