@@ -32,8 +32,8 @@ const ACTION_ICON_PATHS = {
   sleep: MENU_ICON_PATHS.nap,
 };
 
-const BABY_ROOT = "./assets/baby/";
-const BABY_GENERATED_ROOT = "./assets/baby-generated/";
+const BABY_ROOT = "./assets/baby-normalized/";
+const BABY_GENERATED_ROOT = "./assets/baby-normalized/";
 const ADULT_ROOT = "../public/assets/animations/";
 const TREAT_ROOT = "./assets/treats/";
 const GAME_ROOT = "./assets/game/";
