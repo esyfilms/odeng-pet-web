@@ -1,0 +1,6 @@
+.DS_Store
+progress.md
+local-prototype/progress.md
+local-prototype/verify_ui.mjs
+local-prototype/_web_game_playwright_client.mjs
+mockups/

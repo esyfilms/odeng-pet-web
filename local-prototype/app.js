@@ -53,6 +53,8 @@ const SEQUENCES = {
     sideSit: frames(BABY_ROOT, "babyodengsidesitting_", 3),
     wag: frames(BABY_ROOT, "babyodengtailwagging_", 4),
     sleep: frames(BABY_GENERATED_ROOT, "babyodeng-sleep-generated_", 5),
+    eat: frames(BABY_GENERATED_ROOT, "babyodeng-chew-generated_", 6),
+    drink: frames(BABY_GENERATED_ROOT, "babyodeng-drink-generated_", 6),
     hungry: [`${BABY_ROOT}babyodeng-sittingforward-hungry.png`],
     front: [
       `${BABY_ROOT}babyodeng-walking-sideways-front-sitting_0002.png`,
@@ -385,13 +387,13 @@ function currentSleepFrames(age = ageState()) {
   return SEQUENCES.baby.sleep;
 }
 
-function currentChewFrames(age = ageState()) {
+function currentChewFrames(kind = "treat", age = ageState()) {
   if (isAdultStage(age)) return SEQUENCES.adult.eat;
-  return SEQUENCES.adult.eat;
+  return kind === "drink" ? SEQUENCES.baby.drink : SEQUENCES.baby.eat;
 }
 
-function currentChewOptions() {
-  return { front: true, adultFront: true };
+function currentChewOptions(age = ageState()) {
+  return isAdultStage(age) ? { front: true, adultFront: true } : { front: true };
 }
 
 function buildMenus() {
@@ -939,7 +941,7 @@ async function runHeal() {
     await playOnce(currentHappyFrames(age), { fps: 6, ...currentHappyOptions(age) });
   } else {
     renderEffects("pill");
-    startLoop(currentChewFrames(age), feedLoopOptions("treat", age));
+    startLoop(currentChewFrames("treat", age), feedLoopOptions("treat", age));
     await pause(1180);
     stopSpriteTimer();
     state.vit = clamp(state.vit + 18);
@@ -994,6 +996,7 @@ async function runNap() {
   if (state.napping) {
     finishNap("Odeng woke up.");
     renderAll();
+    renderScenePose();
     saveState();
     return;
   }
@@ -1461,12 +1464,12 @@ function countPlaySession(play) {
   saveState();
 }
 
-function feedLoop(kind) {
-  return currentChewFrames();
+function feedLoop(kind, age = ageState()) {
+  return currentChewFrames(kind, age);
 }
 
-function feedLoopOptions(kind) {
-  return { fps: kind === "drink" ? 7 : 8, ...currentChewOptions() };
+function feedLoopOptions(kind, age = ageState()) {
+  return { fps: kind === "drink" ? 7 : 8, ...currentChewOptions(age) };
 }
 
 function poopMarkup(count) {
@@ -1597,7 +1600,7 @@ function applyQueryDebug() {
       scene: "heal",
       cursor: "heal",
       hatchTaps: 100,
-      hatchedAt: Date.now() - (10 * 86400000),
+      hatchedAt: Date.now() - (5 * 86400000),
       food: 12,
       sleep: 16,
       love: 35,
