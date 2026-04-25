@@ -373,6 +373,45 @@ h1 {
   animation: sweep 900ms steps(8, end) infinite;
 }
 
+.pixel-poop {
+  position: absolute;
+  bottom: 34px;
+  width: 18px;
+  height: 14px;
+  border-radius: 0;
+  background: #7a4a22;
+  image-rendering: pixelated;
+  box-shadow:
+    3px -5px 0 #8b5628,
+    6px -9px 0 #9b6330,
+    9px -4px 0 #6a3d1d,
+    2px 2px 0 #4d2b14,
+    7px 2px 0 #4d2b14,
+    12px 1px 0 #4d2b14;
+}
+
+.pixel-poop::after {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: -11px;
+  width: 8px;
+  height: 8px;
+  background:
+    linear-gradient(#9b6330, #9b6330) 2px 0 / 4px 2px no-repeat,
+    linear-gradient(#8b5628, #8b5628) 0 2px / 8px 3px no-repeat,
+    linear-gradient(#6a3d1d, #6a3d1d) 2px 5px / 5px 3px no-repeat;
+}
+
+.pixel-poop.pile-a {
+  left: 25%;
+}
+
+.pixel-poop.pile-b {
+  left: 70%;
+  transform: scale(0.82);
+}
+
 @keyframes device-load {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }

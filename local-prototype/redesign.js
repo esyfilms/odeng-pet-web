@@ -138,7 +138,7 @@ function renderEffect(effect) {
     els.effects.innerHTML = '<img class="hazard" src="./assets/game/stones.png" alt=""><span class="bark-mark"></span>';
   }
   if (effect === "sweep") {
-    els.effects.innerHTML = '<span class="sweep"></span>';
+    els.effects.innerHTML = '<span class="pixel-poop pile-a"></span><span class="pixel-poop pile-b"></span><span class="sweep"></span>';
   }
   if (effect === "bark") {
     els.effects.innerHTML = '<span class="bark-mark"></span>';
