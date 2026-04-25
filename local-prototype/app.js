@@ -1003,12 +1003,16 @@ async function runNap() {
   const age = ageState();
   state.napping = true;
   state.napStartedAt = Date.now();
+  state.message = "Odeng is sleeping. Tap Wake to wake her up.";
+  renderAll();
+  renderEffects("zzz");
   const sleepFrames = currentSleepFrames(age);
   await playOnce(sleepFrames, { fps: 4, sleep: true });
   if (state.napping) holdFrame(sleepFrames[sleepFrames.length - 1], { sleep: true });
   renderEffects("zzz");
-  state.message = "Odeng is sleeping.";
+  state.message = "Odeng is sleeping. Tap Wake to wake her up.";
   renderAll();
+  renderEffects("zzz");
   saveState();
 }
 
@@ -1385,7 +1389,7 @@ function currentDeckConfig(age = ageState()) {
         items = [];
         break;
       case "nap":
-        items = [{ label: "Sleep", action: "sleep" }];
+        items = [{ label: state.napping ? "Wake" : "Sleep", action: "sleep" }];
         break;
       case "tricks":
         items = [
