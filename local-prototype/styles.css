@@ -443,7 +443,7 @@ button {
 .pet-sprite.baby-stage {
   width: 126px;
   height: 126px;
-  bottom: calc(-37px + var(--pet-lift, 0px));
+  bottom: calc(-21px + var(--pet-lift, 0px));
 }
 
 .pet-sprite.face-left {
@@ -459,7 +459,7 @@ button {
 .pet-sprite.baby-stage.front {
   width: 108px;
   height: 108px;
-  bottom: calc(-24px + var(--pet-lift, 0px));
+  bottom: calc(-11px + var(--pet-lift, 0px));
 }
 
 .pet-sprite.front.adult-front {
@@ -477,7 +477,7 @@ button {
 .pet-sprite.baby-stage.sleep {
   width: 126px;
   height: 126px;
-  bottom: calc(-32px + var(--pet-lift, 0px));
+  bottom: calc(-19px + var(--pet-lift, 0px));
 }
 
 .screen[data-scene="play"] .pet-sprite {
@@ -485,7 +485,7 @@ button {
 }
 
 .screen[data-scene="play"] .pet-sprite.baby-stage {
-  bottom: calc(-54px + var(--pet-lift, 0px));
+  bottom: calc(-21px + var(--pet-lift, 0px));
 }
 
 .pet-sprite.egg {

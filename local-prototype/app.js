@@ -1241,7 +1241,7 @@ function renderGameLayer() {
   els.game.classList.remove("hidden");
   const now = performance.now();
   const barkActive = now >= play.barkWaveStartAt && now < play.barkWaveUntil;
-  const barkLeft = Math.max(16, Math.min(310, runtime.petLeft + (runtime.faceLeft ? -34 : 34)));
+  const barkLeft = Math.max(16, Math.min(310, runtime.petLeft + (runtime.faceLeft ? 34 : -34)));
   els.game.innerHTML = `
     <div class="game-hud">
       <span>Score ${play.score}</span>
