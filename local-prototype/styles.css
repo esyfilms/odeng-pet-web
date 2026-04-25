@@ -16,6 +16,23 @@
   --pet-lift: 0px;
 }
 
+[data-theme="dark"] {
+  --black: #0b0b0b;
+  --surface: #151515;
+  --surface-raised: #202020;
+  --border: #2b2b2b;
+  --border-visible: #63635e;
+  --text-disabled: #70706a;
+  --text-secondary: #b7b7ae;
+  --text-primary: #f0f0ea;
+  --text-display: #ffffff;
+  --accent: #ff3b42;
+  --success: #9ccf8e;
+  --warning: #e6c15c;
+  --dot: rgba(255, 255, 255, 0.16);
+  --segment-gap: var(--black);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -72,6 +89,9 @@ button {
   left: 18px;
   top: 16px;
   z-index: 8;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .brand {
@@ -81,6 +101,30 @@ button {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--text-secondary);
+}
+
+.theme-toggle {
+  height: 24px;
+  padding: 0 10px;
+  border: 1px solid var(--border-visible);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text-secondary);
+  font-family: "Space Mono", "JetBrains Mono", monospace;
+  font-size: 9px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.theme-toggle:active {
+  transform: translateY(1px);
 }
 
 .screen {

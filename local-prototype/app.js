@@ -1,4 +1,5 @@
 const STORAGE_KEY = "odeng-local-baby-prototype-v2";
+const THEME_KEY = "odeng-local-theme";
 
 const MENU_ITEMS = [
   { id: "food", label: "Food", icon: "feeding-bowl.png", row: "top" },
@@ -101,6 +102,7 @@ const els = {
   effects: document.getElementById("effects"),
   deck: document.getElementById("action-deck"),
   game: document.getElementById("game-layer"),
+  themeToggle: document.getElementById("theme-toggle"),
 };
 
 const state = loadState();
@@ -123,6 +125,7 @@ init();
 
 function init() {
   applyQueryDebug();
+  applyTheme(loadTheme());
   normalizeState();
   buildMenus();
   bindEvents();
@@ -198,6 +201,23 @@ function bindEvents() {
   els.topMenu.addEventListener("click", onMenuClick);
   els.bottomMenu.addEventListener("click", onMenuClick);
   els.stage.addEventListener("click", onStageClick);
+  els.themeToggle.addEventListener("click", toggleTheme);
+}
+
+function loadTheme() {
+  return localStorage.getItem(THEME_KEY) === "dark" ? "dark" : "light";
+}
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  els.themeToggle.textContent = theme === "dark" ? "Light" : "Dark";
+  els.themeToggle.setAttribute("aria-pressed", theme === "dark" ? "true" : "false");
+}
+
+function toggleTheme() {
+  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  localStorage.setItem(THEME_KEY, nextTheme);
+  applyTheme(nextTheme);
 }
 
 function onMenuClick(event) {
