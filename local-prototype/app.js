@@ -1290,11 +1290,22 @@ function createPlayEntity(type, now, level = 1) {
     dead: false,
     size,
     speed,
-    bottom: isStone ? -32 : type === "cat" ? -52 : -36,
+    bottom: gameEntityBottom(type, size),
     frames: isStone ? null : (type === "cat" ? GAME_ASSETS.catFrames : GAME_ASSETS.squirrelFrames),
     frameIndex: 0,
     frameElapsed: 0,
   };
+}
+
+function gameEntityBottom(type, size) {
+  const gameLayerGapBelowGround = 13;
+  const source = type === "stone"
+    ? { sourceHeight: 64, alphaBottomPad: 6 }
+    : type === "cat"
+      ? { sourceHeight: 92, alphaBottomPad: 28 }
+      : { sourceHeight: 92, alphaBottomPad: 15 };
+  const transparentPad = (source.alphaBottomPad / source.sourceHeight) * size;
+  return Math.round(-(gameLayerGapBelowGround + transparentPad));
 }
 
 function renderEffects(kind = null) {
